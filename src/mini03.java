@@ -1,3 +1,6 @@
+import DBMS.StudentDAO;
+import DBMS.StudentVO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -41,7 +44,7 @@ public class mini03 {
 
     public static void main(String[] args) {
         list.add(new Student("홍길동", 70, 80, 90));
-
+        StudentDAO dao = new StudentDAO();
         // ArrayList 관련 함수들 : 전체지우기, 추가, 삭제, 검색(직접 코드로)
         Scanner scanner = new Scanner(System.in);
         OUT: while (true) {
@@ -59,8 +62,15 @@ public class mini03 {
                     System.out.print("수학점수 입력");
                     int math = scanner.nextInt();
 
-                    Student student = new Student(name, kor, eng, math);
-                    list.add(student);
+//                    Student student = new Student(name, kor, eng, math);
+//                    list.add(student);
+                    StudentVO vo = new StudentVO();
+//                    vo.setMemberno(1);
+                    vo.setName(name);
+                    vo.setKor(kor);
+                    vo.setEng(eng);
+                    vo.setMath(math);
+                    dao.insert(vo);
                     break;
                 }
                 case 2: // 2. 전체 출력
@@ -126,3 +136,4 @@ public class mini03 {
         }
     }
 }
+
