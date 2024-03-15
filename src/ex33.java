@@ -19,7 +19,9 @@ class HanaAccount {
         this.money += 100;
     }
 
-    void withdraw () {
+    void withdraw () throws OverdrawnException {
+        if (this.money < 100)
+            throw new OverdrawnException("출금 잔액이 부족합니다.");
         this.money -= 100;
     }
 
@@ -36,7 +38,11 @@ public class ex33 {
     public static void main(String[] args) {
         HanaAccount hanaAccount =  HanaAccount.getInstance();
         hanaAccount.deposit();
-        hanaAccount.withdraw();
+        try {
+            hanaAccount.withdraw();
+        } catch (OverdrawnException e) {
+            e.printStackTrace();
+        }
         hanaAccount.getInterestRate();
         hanaAccount.getMyMoney();
     }
