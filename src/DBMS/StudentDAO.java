@@ -47,11 +47,11 @@ public class StudentDAO {
         return result;
     }
 
-    public StudentVO selectOne(int memberno) {
+    public StudentVO selectOne(String name) {
         StudentVO vo = new StudentVO();
 
         try {
-            String sql = "SELECT * FROM student WHERE memberno=" + memberno;
+            String sql = "SELECT * FROM student WHERE name=\'" + name + "\'";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             if (rs.next()) {

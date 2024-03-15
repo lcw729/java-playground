@@ -85,25 +85,30 @@ public class mini03 {
                         );
                     }
                     break;
-                case 3:
+                case 3: {
+                    StudentVO vo = new StudentVO();
                     System.out.print("검색할 사람의 이름 : ");
                     String searchName = scanner.next();
-                    Student target = findStudent(searchName);
+//                    Student target = findStudent(searchName);
+                    vo = dao.selectOne(searchName);
+                    int total = vo.getKor() + vo.getEng() + vo.getMath();
+                    float avg = total/3;
                     System.out.printf("이름: %s 국어: %d 영어: %d 수학: %d 총점: %d 평균: %f\n"
-                            , target.name
-                            , target.kor
-                            , target.eng
-                            , target.math
-                            , target.total
-                            , target.avg
+                            , vo.getName()
+                            , vo.getKor()
+                            , vo.getEng()
+                            , vo.getMath()
+                            , vo.getKor() + vo.getEng() + vo.getMath()
+                            , avg
                     );
                     break;
+                }
                 case 4:
                     System.out.print("수정할 사람의 이름 : ");
                     String updateName = scanner.next();
                     System.out.print("수정할 내용은? 1.국어 2.영어 3.수학 : ");
                     int updateSubject = scanner.nextInt();
-                    target = findStudent(updateName);
+                    Student target = findStudent(updateName);
                     switch (updateSubject){
                         case 1:
                             System.out.print("국어점수 수정: ");

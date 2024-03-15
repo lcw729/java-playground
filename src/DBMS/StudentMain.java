@@ -20,7 +20,7 @@ public class StudentMain {
         }
         */
 
-        vo = dao.selectOne(1);
+//        vo = dao.selectOne(1);
         System.out.println(vo.getName());
     }
 }
